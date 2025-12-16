@@ -16,10 +16,10 @@ public class ModBlocks {
     public static Block choppingBoard;
 
     private static void initBlocks() {
-        choppingBoard = new BlockChoppingBoard().setBlockName("choppingBoard");
+        choppingBoard = new BlockChoppingBoard().setBlockName("chopping_board");
     }
 
     private static void registerBlocks() {
-        GameRegistry.registerBlock(choppingBoard, "choppingBoard");
+        GameRegistry.registerBlock(choppingBoard, "chopping_board");
     }
 }
