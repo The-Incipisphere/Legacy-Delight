@@ -7,6 +7,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import io.thedogofchaos.legacydelight.Config;
 import io.thedogofchaos.legacydelight.LegacyDelight;
 import io.thedogofchaos.legacydelight.Tags;
+import io.thedogofchaos.legacydelight.common.registry.ModBlocks;
 
 public class CommonProxy {
 
@@ -15,8 +16,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
 
-        LegacyDelight.LOG.info(Config.greeting);
-        LegacyDelight.LOG.info("I am MyMod at version " + Tags.VERSION);
+        ModBlocks.register();
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)

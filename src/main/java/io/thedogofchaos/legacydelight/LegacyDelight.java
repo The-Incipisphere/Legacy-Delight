@@ -24,6 +24,7 @@ public class LegacyDelight {
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
+        LegacyDelight.LOG.info("Legacy Delight v" + Tags.VERSION + ", cooking up some meals to go!");
         proxy.preInit(event);
     }
 
