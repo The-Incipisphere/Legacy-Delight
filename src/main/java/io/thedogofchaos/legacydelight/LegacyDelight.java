@@ -17,7 +17,7 @@ public class LegacyDelight {
     public static final String MODID = "legacydelight";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "io.thedogofchaos.legacydelight.ClientProxy", serverSide = "io.thedogofchaos.legacydelight.CommonProxy")
+    @SidedProxy(clientSide = "io.thedogofchaos.legacydelight.client.ClientProxy", serverSide = "io.thedogofchaos.legacydelight.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
