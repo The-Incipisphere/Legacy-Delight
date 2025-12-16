@@ -9,7 +9,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
-/// Breaking News: Local dog dives headfirst into rendering with {@link org.lwjgl.opengl.GL11} and the ancient-as-fuck {@link net.minecraft.client.renderer.Tessellator}
+/**
+ * Breaking News: Local dog dives headfirst into rendering with {@link org.lwjgl.opengl.GL11} and the ancient-as-fuck {@link net.minecraft.client.renderer.Tessellator}.
+ * May the compiler have mercy.
+ */
 public class RenderChoppingBoard implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
