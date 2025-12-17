@@ -57,4 +57,8 @@ public class LegacyDelight {
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
+
+    public static String resLoc(String str) {
+        return MODID + ":" + str;
+    };
 }

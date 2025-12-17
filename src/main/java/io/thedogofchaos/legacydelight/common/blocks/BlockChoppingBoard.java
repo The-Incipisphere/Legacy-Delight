@@ -1,7 +1,6 @@
 package io.thedogofchaos.legacydelight.common.blocks;
 
-import static com.gtnewhorizon.gtnhlib.client.model.ModelISBRH.JSON_ISBRH_ID;
-
+import com.gtnewhorizon.gtnhlib.client.model.ModelISBRH;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +26,11 @@ public class BlockChoppingBoard extends BlockContainer {
 
     @Override
     public int getRenderType() {
-        return JSON_ISBRH_ID;
+        return ModelISBRH.JSON_ISBRH_ID;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
     }
 }
