@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
  * Breaking News: Local dog dives headfirst into rendering with {@link org.lwjgl.opengl.GL11} and the ancient-as-fuck {@link net.minecraft.client.renderer.Tessellator}.
  * May the compiler have mercy.
  */
+@Deprecated
 public class RenderChoppingBoard implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {

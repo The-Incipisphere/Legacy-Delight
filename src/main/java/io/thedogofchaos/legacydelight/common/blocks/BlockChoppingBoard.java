@@ -21,6 +21,4 @@ public class BlockChoppingBoard extends BlockContainer {
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityChoppingBoard();
     }
-
-    public static int renderID = RenderingRegistry.getNextAvailableRenderId();
 }
