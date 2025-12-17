@@ -3,8 +3,8 @@
   "render_type": "minecraft:cutout",
   "parent": "block/thin_block",
   "textures": {
-    "particle": "legacydelight:chopping_board",
-    "top": "legacydelight:chopping_board"
+    "particle": "legacydelight:blocks/chopping_board",
+    "top": "legacydelight:blocks/chopping_board"
   },
   "elements": [
     {
