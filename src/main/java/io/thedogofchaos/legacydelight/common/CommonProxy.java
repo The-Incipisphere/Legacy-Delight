@@ -34,6 +34,8 @@ public class CommonProxy {
 
         @Override
         public Item getTabIconItem() {
+            // Full path to the field, for at-a-glance clarity.
+            // May be replaced in future with one of the items from this mod.
             return net.minecraft.init.Items.cooked_beef;
         }
     };
