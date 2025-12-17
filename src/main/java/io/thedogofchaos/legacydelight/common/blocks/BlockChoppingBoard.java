@@ -1,10 +1,11 @@
 package io.thedogofchaos.legacydelight.common.blocks;
 
-import com.gtnewhorizon.gtnhlib.client.model.ModelISBRH;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import com.gtnewhorizon.gtnhlib.client.model.ModelISBRH;
 
 import io.thedogofchaos.legacydelight.common.tileentity.TileEntityChoppingBoard;
 

@@ -1,11 +1,11 @@
 package io.thedogofchaos.legacydelight.common.registry;
 
+import static io.thedogofchaos.legacydelight.LegacyDelight.resLoc;
+
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import io.thedogofchaos.legacydelight.common.blocks.BlockChoppingBoard;
-
-import static io.thedogofchaos.legacydelight.LegacyDelight.resLoc;
 
 public class ModBlocks {
 
