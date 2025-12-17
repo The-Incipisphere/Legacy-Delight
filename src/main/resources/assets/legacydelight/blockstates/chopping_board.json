@@ -1,7 +1,7 @@
 {
   "variants": {
     "meta=0": {"model": "legacydelight:blocks/chopping_board", "y": 90},
-    "meta=1": { "model": "legacydelight:blocks/chopping_board", "y": 0},
+    "meta=1": {"model": "legacydelight:blocks/chopping_board", "y": 0},
     "meta=2": {"model": "legacydelight:blocks/chopping_board", "y": 180},
     "meta=3": {"model": "legacydelight:blocks/chopping_board", "y": 270}
   }
