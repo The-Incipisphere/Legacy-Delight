@@ -3,19 +3,19 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "A scuffed backport of Farmers Delight 1.20.1",
+		"description": "A scuffed backport of Farmers Delight, from 1.20.1 down to 1.7.10.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/SinTh0r4s/MyMod",
+		"url": "https://github.com/The-Incipisphere/Legacy-Delight",
 		"updateUrl": "",
-		"authorList": ["SinTho0r4s"],
-		"credits": "",
+		"authorList": ["TheDogOfChaos"],
+		"credits": "The contributors of GTNHLib, for such a useful tool.",
 		"logoFile": "",
 		"screenshots": [],
 		"parent": "",
-		"requiredMods": [],
+		"requiredMods": ["gtnhlib"],
 		"dependencies": ["gtnhlib"],
 		"dependants": [],
-		"useDependencyInformation": false
+		"useDependencyInformation": true
 	}]
 }
