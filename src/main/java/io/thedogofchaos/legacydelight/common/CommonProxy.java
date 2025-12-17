@@ -4,10 +4,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import io.thedogofchaos.legacydelight.Config;
 import io.thedogofchaos.legacydelight.LegacyDelight;
 import io.thedogofchaos.legacydelight.Tags;
 import io.thedogofchaos.legacydelight.common.registry.ModBlocks;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 public class CommonProxy {
 
@@ -27,4 +31,11 @@ public class CommonProxy {
 
     // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {}
+
+    public static CreativeTabs legacyDelightTab = new CreativeTabs(LegacyDelight.MODID) {
+        @Override
+        public Item getTabIconItem() {
+            return net.minecraft.init.Items.cooked_beef;
+        }
+    };
 }
