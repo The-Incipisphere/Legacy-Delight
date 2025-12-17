@@ -1,6 +1,8 @@
 package io.thedogofchaos.legacydelight;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import io.thedogofchaos.legacydelight.common.CommonProxy;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +13,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = LegacyDelight.MODID, version = Tags.VERSION, name = "Legacy Delight", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = LegacyDelight.MODID, version = Tags.VERSION, name = "Legacy Delight", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:gtnhlib@[0.8.34,)")
 public class LegacyDelight {
 
     public static final String MODID = "legacydelight";
@@ -32,6 +34,11 @@ public class LegacyDelight {
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+
+//        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
+//        FMLCommonHandler.instance()
+//            .bus()
+//            .register(new FMLEventHandler());
     }
 
     @Mod.EventHandler

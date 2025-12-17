@@ -3,7 +3,7 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "An example mod for Minecraft 1.7.10 with Forge focused on a stable setup.",
+		"description": "A scuffed backport of Farmers Delight 1.20.1",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/SinTh0r4s/MyMod",
@@ -14,7 +14,7 @@
 		"screenshots": [],
 		"parent": "",
 		"requiredMods": [],
-		"dependencies": [],
+		"dependencies": ["gtnhlib"],
 		"dependants": [],
 		"useDependencyInformation": false
 	}]
