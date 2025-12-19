@@ -1,0 +1,8 @@
+package io.thedogofchaos.legacydelight.common.crafting;
+
+import net.minecraft.item.ItemStack;
+
+/// TODO: Make implementations.
+public interface IIngredient {
+    boolean matches(ItemStack itemStack);
+}
