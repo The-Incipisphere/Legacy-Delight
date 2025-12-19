@@ -1,7 +1,7 @@
 package io.thedogofchaos.legacydelight.common.blocks;
 
-import io.thedogofchaos.legacydelight.Constants;
-import io.thedogofchaos.legacydelight.common.util.BlockUtils;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,8 +15,7 @@ import net.minecraft.world.World;
 import com.gtnewhorizon.gtnhlib.client.model.ModelISBRH;
 
 import io.thedogofchaos.legacydelight.common.tileentity.TileEntityChoppingBoard;
-
-import javax.annotation.Nullable;
+import io.thedogofchaos.legacydelight.common.util.BlockUtils;
 
 public class BlockChoppingBoard extends BlockContainer {
 
@@ -30,7 +29,8 @@ public class BlockChoppingBoard extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX,
+        float subY, float subZ) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileEntityChoppingBoard boardTE) { // sanity check
             if (world.isRemote) return false; // If this logic is being performed on the client, we GTFO
@@ -68,7 +68,7 @@ public class BlockChoppingBoard extends BlockContainer {
                 } else {
                     // ...else, we try to perform a recipe.
                     player.addChatMessage(new ChatComponentText("Failed to add item to board. Attempting recipe..."));
-                    if(boardTE.attemptRecipe(heldStack, player)) {
+                    if (boardTE.attemptRecipe(heldStack, player)) {
                         // TODO: add particles or soemthing
                         return true;
                     }
@@ -109,13 +109,15 @@ public class BlockChoppingBoard extends BlockContainer {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_,
+        int p_149719_4_) {
         BlockUtils.setSaneBounds(this, 1, 0, 1, 15, 1, 15);
     }
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         BlockUtils.setSaneBounds(this, 1, 0, 1, 15, 1, 15);;
-        return AxisAlignedBB.getBoundingBox(x + this.minX, y + this.minY, z + this.minZ, x + this.maxX, y + this.maxY, z + this.maxZ);
+        return AxisAlignedBB
+            .getBoundingBox(x + this.minX, y + this.minY, z + this.minZ, x + this.maxX, y + this.maxY, z + this.maxZ);
     }
 }
