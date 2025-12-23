@@ -4,8 +4,8 @@ import io.thedogofchaos.legacydelight.common.recipes.IIngredient;
 import net.minecraft.item.ItemStack;
 
 /// TODO: Implement.
-public class OreDictIngredient implements IIngredient {
-    public OreDictIngredient(String ore) {
+public class IngredientOreDict implements IIngredient {
+    public IngredientOreDict(String ore) {
 
     }
 

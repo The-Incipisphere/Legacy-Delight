@@ -1,5 +1,9 @@
-package io.thedogofchaos.legacydelight.common.recipes;
+package io.thedogofchaos.legacydelight.common.recipes.impl;
 
+import io.thedogofchaos.legacydelight.LegacyDelight;
+import io.thedogofchaos.legacydelight.common.recipes.IIngredient;
+import io.thedogofchaos.legacydelight.common.recipes.IRecipe;
+import io.thedogofchaos.legacydelight.common.recipes.IResult;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -15,7 +19,7 @@ import java.util.*;
  * The place where all recipes for the Cutting Board are defined.
  * All instances of this class are effectively immutable.
  */
-public class RecipeCuttingBoard {
+public class RecipeCuttingBoard implements IRecipe {
     private final ResourceLocation id;
     private final IIngredient input;
     private final IIngredient tool;
@@ -59,8 +63,14 @@ public class RecipeCuttingBoard {
         this(id, input, tool, results, null);
     }
 
+    @Override
     public ResourceLocation getId() {
         return id;
+    }
+
+    @Override
+    public ResourceLocation getType() {
+        return LegacyDelight.resLoc("cutting_board");
     }
 
     public IIngredient getInput() {

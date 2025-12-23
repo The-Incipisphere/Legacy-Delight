@@ -7,14 +7,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class GuaranteedResult implements IResult {
+public class ResultGuaranteed implements IResult {
     private final ItemStack itemStack;
 
     /**
      * Represents an ItemStack GUARANTEED to be given as the result of a recipe.
      * @throws NullPointerException If {@code itemStack} is null.
      */
-    public GuaranteedResult(ItemStack itemStack) {
+    public ResultGuaranteed(ItemStack itemStack) {
         this.itemStack = Objects.requireNonNull(itemStack, "Result ItemStack must not be null.");
     }
 
@@ -22,7 +22,7 @@ public class GuaranteedResult implements IResult {
      * Always gives a copy of the ItemStack for this recipe result.
      *
      * @param rand Does nothing here, but since {@link IResult} is meant to be iterated over,
-     *             passing null will throw a NPE, in respect for inheritors like {@link ChanceResult}.
+     *             passing null will throw a NPE, in respect for inheritors like {@link ResultChance}.
      * @return An {@link Optional} containing a copy of the stored {@link net.minecraft.item.ItemStack}.
      * @throws NullPointerException If {@code rand} is null.
      */

@@ -18,7 +18,7 @@ public class ModBlocks {
 
     private static void initBlocks() {
         choppingBoard = new BlockChoppingBoard().setBlockName("chopping_board")
-            .setBlockTextureName(resLoc("chopping_board"));
+            .setBlockTextureName(resLoc("chopping_board").toString());
     }
 
     private static void registerBlocks() {

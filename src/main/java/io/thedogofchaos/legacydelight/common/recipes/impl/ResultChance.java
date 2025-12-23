@@ -7,17 +7,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class ChanceResult implements IResult {
+public class ResultChance implements IResult {
     private final ItemStack itemStack;
     private final float chance;
 
     /**
      * Represents an ItemStack that has a CHANCE to be given as the result of a recipe.
-     * @param chance The chance of the itemstack being returned by {@link ChanceResult#getStack(Random)}.
+     * @param chance The chance of the itemstack being returned by {@link ResultChance#getStack(Random)}.
      *               (Automatically clamped to the range 0.0f-1.0f)
      * @throws NullPointerException If {@code rand} is null.
      */
-    public ChanceResult(ItemStack itemStack, float chance) {
+    public ResultChance(ItemStack itemStack, float chance) {
         this.itemStack = Objects.requireNonNull(itemStack, "Result ItemStack must not be null.");
         this.chance = Math.max(0, Math.min(1, chance));
     }
