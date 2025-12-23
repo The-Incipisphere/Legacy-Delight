@@ -1,6 +1,6 @@
-package io.thedogofchaos.legacydelight.common.crafting.impl;
+package io.thedogofchaos.legacydelight.common.recipes.impl;
 
-import io.thedogofchaos.legacydelight.common.crafting.IResult;
+import io.thedogofchaos.legacydelight.common.recipes.IResult;
 import net.minecraft.item.ItemStack;
 
 import java.util.Objects;

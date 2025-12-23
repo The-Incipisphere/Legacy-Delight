@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -35,7 +36,8 @@ public class BlockChoppingBoard extends BlockContainer {
         if (tileEntity instanceof TileEntityChoppingBoard boardTE) { // sanity check
             if (world.isRemote) return false; // If this logic is being performed on the client, we GTFO
 
-            /* TODO: Write proper logic for allowing the player to:
+            /*
+             *TODO: Write proper logic for allowing the player to:
              * - Block: If the player isn't sneaking, and is holding something,
              *   attempt to add items (or a copy of the items, if in creative) to the chopping board. - DONE
              *   - TE: If the internal inventory isn't full, or the player isn't trying to add two different items at once,
@@ -55,41 +57,31 @@ public class BlockChoppingBoard extends BlockContainer {
              *             - Block: Else, drop the items on top of the board.
              */
 
-            @Nullable
-            ItemStack heldStack = player.getHeldItem();
-            // If the player isn't sneaking and has something in their hand...
-            if (!player.isSneaking() && heldStack != null) {
-                // ... we attempt to add items to the chopping board...
-                // (If the player is in creative mode, copy the item instead of consuming it.)
-                if (boardTE.addItem(player.capabilities.isCreativeMode ? heldStack.copy() : heldStack)) {
+            @Nullable ItemStack heldStack = player.getHeldItem();
+            if (!player.isSneaking() && heldStack != null) { // If the player isn't sneaking and has something in their hand...
+                if (boardTE.addItem(player.capabilities.isCreativeMode ? heldStack.copy() : heldStack)) { // ... we attempt to add items to the chopping board... (If the player is in creative mode, copy the item instead of consuming it.)
                     // ...if that succeeded, we return with success...
                     player.addChatMessage(new ChatComponentText("Added item to board."));
                     return true;
                 } else {
-                    // ...else, we try to perform a recipe.
                     player.addChatMessage(new ChatComponentText("Failed to add item to board. Attempting recipe..."));
-                    if (boardTE.attemptRecipe(heldStack, player)) {
+                    if (boardTE.attemptRecipe(heldStack, player)) { // ...else, we try to perform a recipe.
                         // TODO: add particles or soemthing
                         return true;
                     }
                 }
-            } else if (player.isSneaking() && heldStack == null) {
-
+            } else if (player.isSneaking() && heldStack == null) { // If the player is sneaking and has nothing in their hand...
+                @Nullable ItemStack removedItems = boardTE.removeItems(); // ...we try to remove the item...
+                if (!player.capabilities.isCreativeMode) { // ...if the player isn't in creative mode...
+                    if (!player.inventory.addItemStackToInventory(removedItems)) { // ...we try to add it to the player's inventory...
+                        // ...and if that doesn't work, we drop the item on top of the chopping board.
+                        EntityItem droppedItems = new EntityItem(world, x, y, z, removedItems);
+                        droppedItems.delayBeforeCanPickup = 10;
+                        world.spawnEntityInWorld(droppedItems);
+                    }
+                } // ...else, if the player is in creative mode, we do nothing with the removed item.
             }
-
-//            if (!player.isSneaking() && heldStack != null) { // If the player is NOT sneaking and their hand is NOT empty...
-//                if (player.getHeldItem().getItem() instanceof ItemFood) { // ...we check if the item they're holding is food...
-//                    if (boardTE.addItem(player.capabilities.isCreativeMode ? heldStack.copy() : heldStack)) { // ...if so, we try to add the stack to the board.
-//                        world.playSoundEffect(x, y, z, "", 1f, 0.8f);
-//                        player.addChatMessage(new ChatComponentText("Added food stack to chopping board."));
-//                        return true;
-//                    } else {
-//                        player.addChatMessage(new ChatComponentText("Failed add food stack to chopping board."));
-//                    }
-//                } else if ()
-//            }
         }
-
         return false;
     }
 

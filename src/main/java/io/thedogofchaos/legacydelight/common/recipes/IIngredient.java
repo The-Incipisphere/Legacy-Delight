@@ -1,4 +1,4 @@
-package io.thedogofchaos.legacydelight.common.crafting;
+package io.thedogofchaos.legacydelight.common.recipes;
 
 import net.minecraft.item.ItemStack;
 

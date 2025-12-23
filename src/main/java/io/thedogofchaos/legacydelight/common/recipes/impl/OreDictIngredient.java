@@ -1,8 +1,7 @@
-package io.thedogofchaos.legacydelight.common.crafting.impl;
+package io.thedogofchaos.legacydelight.common.recipes.impl;
 
-import io.thedogofchaos.legacydelight.common.crafting.IIngredient;
+import io.thedogofchaos.legacydelight.common.recipes.IIngredient;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 /// TODO: Implement.
 public class OreDictIngredient implements IIngredient {
