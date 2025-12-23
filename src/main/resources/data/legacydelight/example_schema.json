@@ -1,0 +1,19 @@
+{
+  "type": "legacydelight:cooking_pot",
+  "inputs": [
+    {"item": "minecraft:apple"},
+    {"item": "minecraft:apple"},
+    {"item": "minecraft:sugar"},
+    {"oredict": "foodDough"},
+    {"oredict": "foodDough"}
+  ],
+  "output": {
+    "item": "legacydelight:apple_pie",
+    "count": 1
+  },
+  "serve_on": {
+    "oredict": "dishPlate"
+  },
+  "cooking_time": 200,
+  "experience": 1.0
+}
