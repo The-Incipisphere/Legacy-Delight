@@ -37,24 +37,33 @@ public class BlockChoppingBoard extends BlockContainer {
             if (world.isRemote) return false; // If this logic is being performed on the client, we GTFO
 
             /*
-             *TODO: Write proper logic for allowing the player to:
+             *TODO: Write proper logic for the following:
              * - Block: If the player isn't sneaking, and is holding something,
-             *   attempt to add items (or a copy of the items, if in creative) to the chopping board. - DONE
+             *   attempt to add the held item(s) (or a copy of the item(s), if in creative) to the chopping board.
+             *   If this succeeds, return true.
              *   - TE: If the internal inventory isn't full, or the player isn't trying to add two different items at once,
-             *     add the item(s) onto the chopping board.
-             *   - TE: Else, fail the attempt.
-             *   - Block: If the attempt to add items failed,
-             *     attempt to perform a chopping recipe. - DONE
-             *      - TE: If there is no recipe containing the input, fail the attempt with a chat message saying the item doesn't look cuttable.
-             *      - TE: If there is a recipe containing the input, but the required tool is not the tool being used,
-             *        fail the attempt with a chat message saying the player should use a different tool.
-             *      - TE: Else, perform the recipe.
+             *     add the item(s) onto the chopping board, and return true.
+             *   - TE: Else, attempt to perform a chopping recipe, and bubble up the return value.
+             *      - TE: If there is no recipe containing the input, send a chat message saying the item doesn't look cuttable, and return false.
+             *      - TE: If there is a recipe containing the input, send a chat message saying the player should use a different tool, and return false.
+             *      - TE: Else, perform the recipe, and return true.
+             * - Block: If the player is sneaking, and is holding something,
+             *   attempt to add the held item (or a copy of the item, if in creative) to the chopping board,
+             *   also noting to the TE that it might be a tool being stabbed into the board.
+             *   (kinda like the thing with axes IRL where you swing them into wood and leave them there)
+             *   If this succeeds, return true.
+             *   - TE: If it's a KNOWN TOOL (id or oredict), and the internal inventory is empty,
+             *     add the tool (or a copy of it, if in creative) onto the board,
+             *     updating a (YET TO BE NAMED) field to TRUE for the TESR to check, and return true.
              * - Block: If the player is sneaking, and isn't holding anything,
-             *   attempt to remove any items on the board.
-             *     - TE: If the board has any items on it, remove & return said items. Else, return null.
-             *         - Block: If the player is in Creative mode, do absolutely nothing with the return result of the attempt.
-             *         - Block: Else, attempt to add the returned item to the player's inventory.
-             *             - Block: Else, drop the items on top of the board.
+             *   attempt to remove any items on the board. If this succeeds, return true.
+             *   - TE: If the board has any items on it, remove (from the internal inventory) & return said items inside an Optional. Else, return Optional.empty()
+             *     - Block: If the returned Optional isn't empty,
+             *       - Block: If the player ISN'T in Creative mode, attempt to add the returned item to the player's inventory.
+             *         - Block: If false, drop the items on top of the board.
+             *       - Block: Regardless, return true.
+             *     - Block: Else, do absolutely nothing, and return false.
+             * - Block: Else, return false.
              */
 
             @Nullable ItemStack heldStack = player.getHeldItem();
