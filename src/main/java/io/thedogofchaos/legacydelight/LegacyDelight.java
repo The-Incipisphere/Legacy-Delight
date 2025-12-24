@@ -17,7 +17,8 @@ import io.thedogofchaos.legacydelight.common.CommonProxy;
     version = Tags.VERSION,
     name = "Legacy Delight",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:gtnhlib@[0.8.34,);"
+    // yes, i did this for readability
+    dependencies = "required-after:gtnhlib@[0.8.34,);" + "required-after:data_retroportata;"
 )
 public class LegacyDelight {
 
