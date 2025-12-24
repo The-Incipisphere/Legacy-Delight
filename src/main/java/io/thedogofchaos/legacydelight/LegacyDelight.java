@@ -17,8 +17,7 @@ import io.thedogofchaos.legacydelight.common.CommonProxy;
     version = Tags.VERSION,
     name = "Legacy Delight",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:gtnhlib@[0.8.34,);" +
-        "required-after:data_retroportata;"
+    dependencies = "required-after:gtnhlib@[0.8.34,);"
 )
 public class LegacyDelight {
 
@@ -60,4 +59,8 @@ public class LegacyDelight {
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
+
+    public static ResourceLocation resLoc(String str) {
+        return new ResourceLocation(MODID, str);
+    };
 }

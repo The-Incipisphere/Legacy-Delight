@@ -1,6 +1,5 @@
 package io.thedogofchaos.legacydelight.common.recipes.impl;
 
-import io.thedogofchaos.data_retroportata.DataRetroportata;
 import io.thedogofchaos.legacydelight.LegacyDelight;
 import io.thedogofchaos.legacydelight.common.recipes.IIngredient;
 import io.thedogofchaos.legacydelight.common.recipes.IRecipe;
@@ -71,7 +70,7 @@ public class RecipeCuttingBoard implements IRecipe {
 
     @Override
     public ResourceLocation getType() {
-        return DataRetroportata.resLoc("cutting_board");
+        return LegacyDelight.resLoc("cutting_board");
     }
 
     public IIngredient getInput() {
