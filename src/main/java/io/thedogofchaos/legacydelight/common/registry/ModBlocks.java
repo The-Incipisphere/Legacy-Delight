@@ -1,7 +1,6 @@
 package io.thedogofchaos.legacydelight.common.registry;
 
-import static io.thedogofchaos.legacydelight.LegacyDelight.resLoc;
-
+import io.thedogofchaos.data_retroportata.DataRetroportata;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -18,7 +17,7 @@ public class ModBlocks {
 
     private static void initBlocks() {
         choppingBoard = new BlockChoppingBoard().setBlockName("chopping_board")
-            .setBlockTextureName(resLoc("chopping_board").toString());
+            .setBlockTextureName(DataRetroportata.resLoc("chopping_board").toString());
     }
 
     private static void registerBlocks() {

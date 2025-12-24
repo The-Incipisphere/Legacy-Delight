@@ -1,8 +1,4 @@
-package io.thedogofchaos.legacydelight;
-
-import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+package io.thedogofchaos.data_retroportata;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -10,24 +6,26 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import io.thedogofchaos.legacydelight.LegacyDelight;
+import io.thedogofchaos.legacydelight.Tags;
 import io.thedogofchaos.legacydelight.common.CommonProxy;
+import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
-    modid = LegacyDelight.MODID,
-    version = Tags.VERSION,
-    name = "Legacy Delight",
-    acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:gtnhlib@[0.8.34,);" +
-        "required-after:data_retroportata;"
+    modid = DataRetroportata.MODID,
+    version = "1.0.0",
+    name = "Data Retroportata",
+    acceptedMinecraftVersions = "[1.7.10]"
 )
-public class LegacyDelight {
-
-    public static final String MODID = "legacydelight";
+public class DataRetroportata {
+    public static final String MODID = "data_retroportata";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
     @SidedProxy(
-        clientSide = "io.thedogofchaos.legacydelight.client.ClientProxy",
-        serverSide = "io.thedogofchaos.legacydelight.common.CommonProxy")
+        clientSide = "io.thedogofchaos.data_retroportata.client.ClientProxy",
+        serverSide = "io.thedogofchaos.data_retroportata.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
@@ -60,4 +58,8 @@ public class LegacyDelight {
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
+
+    public static ResourceLocation resLoc(String str) {
+        return new ResourceLocation(MODID, str);
+    };
 }
