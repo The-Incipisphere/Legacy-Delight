@@ -1,0 +1,19 @@
+{
+  "type": "legacydelight:chopping_board",
+  "input": {
+    "item": "minecraft:log",
+    "meta": 0
+  },
+  "tool": {
+    "oredict": "toolAxe",
+    "_comment": "NOTE: gonna need to think about how i get tool capabilities"
+  },
+  "results": [
+    {
+      "item": "minecraft:planks",
+      "meta": 0,
+      "count": 5
+    }
+  ],
+  "sound_name": ""
+}
