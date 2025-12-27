@@ -107,8 +107,8 @@ public class BlockCuttingBoard extends BlockContainer {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_,
-        int p_149719_4_) {
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, int x, int y,
+        int z) {
         BlockUtils.setSaneBounds(this, 1, 0, 1, 15, 1, 15);
     }
 
