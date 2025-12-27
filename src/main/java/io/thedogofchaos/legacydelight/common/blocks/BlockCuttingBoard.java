@@ -14,14 +14,14 @@ import net.minecraft.world.World;
 
 import com.gtnewhorizon.gtnhlib.client.model.ModelISBRH;
 
-import io.thedogofchaos.legacydelight.common.tileentity.TileEntityChoppingBoard;
+import io.thedogofchaos.legacydelight.common.tileentity.TileEntityCuttingBoard;
 import io.thedogofchaos.legacydelight.common.util.BlockUtils;
 
 import java.util.Optional;
 
-public class BlockChoppingBoard extends BlockContainer {
+public class BlockCuttingBoard extends BlockContainer {
 
-    public BlockChoppingBoard() {
+    public BlockCuttingBoard() {
         super(Material.wood);
     }
 
@@ -34,22 +34,22 @@ public class BlockChoppingBoard extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX,
         float subY, float subZ) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity instanceof TileEntityChoppingBoard boardTE) { // sanity check
+        if (tileEntity instanceof TileEntityCuttingBoard boardTE) { // sanity check
             if (world.isRemote) return false; // If this logic is being performed on the client, we GTFO
 
             /*
              *TODO: Write proper logic for the following:
              * - Block: If the player isn't sneaking, and is holding something,
-             *   attempt to add the held item(s) (or a copy of the item(s), if in creative) to the chopping board.
+             *   attempt to add the held item(s) (or a copy of the item(s), if in creative) to the cutting board.
              *   If this succeeds, return true.
              *   - TE: If the internal inventory isn't full, or the player isn't trying to add two different items at once,
-             *     add the item(s) onto the chopping board, and return true.
-             *   - TE: Else, attempt to perform a chopping recipe, and bubble up the return value.
+             *     add the item(s) onto the cutting board, and return true.
+             *   - TE: Else, attempt to perform a cutting recipe, and bubble up the return value.
              *      - TE: If there is no recipe containing the input, send a chat message saying the item doesn't look cuttable, and return false.
              *      - TE: If there is a recipe containing the input, but the player is holding the wrong tool, send a chat message saying the player should use a different tool, and return false.
              *      - TE: Else, perform the recipe, and return true.
              * - Block: If the player is sneaking, and is holding something,
-             *   attempt to add the held item (or a copy of the item, if in creative) to the chopping board,
+             *   attempt to add the held item (or a copy of the item, if in creative) to the cutting board,
              *   also noting to the TE that it might be a tool being stabbed into the board.
              *   (kinda like the thing with axes IRL where you swing them into wood and leave them there)
              *   If this succeeds, return true.
@@ -93,7 +93,7 @@ public class BlockChoppingBoard extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityChoppingBoard();
+        return new TileEntityCuttingBoard();
     }
 
     @Override

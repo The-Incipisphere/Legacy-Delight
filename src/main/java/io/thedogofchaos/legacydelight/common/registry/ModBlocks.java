@@ -3,7 +3,7 @@ package io.thedogofchaos.legacydelight.common.registry;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import io.thedogofchaos.legacydelight.common.blocks.BlockChoppingBoard;
+import io.thedogofchaos.legacydelight.common.blocks.BlockCuttingBoard;
 
 import static io.thedogofchaos.legacydelight.LegacyDelight.resLoc;
 
@@ -14,14 +14,14 @@ public class ModBlocks {
         registerBlocks();
     }
 
-    public static Block choppingBoard;
+    public static Block cutting_board;
 
     private static void initBlocks() {
-        choppingBoard = new BlockChoppingBoard().setBlockName("chopping_board")
-            .setBlockTextureName(resLoc("chopping_board").toString());
+        cutting_board = new BlockCuttingBoard().setBlockName("cutting_board")
+            .setBlockTextureName(resLoc("cutting_board").toString());
     }
 
     private static void registerBlocks() {
-        GameRegistry.registerBlock(choppingBoard, "chopping_board");
+        GameRegistry.registerBlock(cutting_board, "cutting_board");
     }
 }

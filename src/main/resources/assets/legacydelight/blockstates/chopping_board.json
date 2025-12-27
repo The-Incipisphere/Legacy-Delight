@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "": {"model": "legacydelight:blocks/chopping_board", "y": 0},
-    "facing=east": {"model": "legacydelight:blocks/chopping_board", "y": 90},
-    "facing=north": {"model": "legacydelight:blocks/chopping_board", "y": 0},
-    "facing=south": {"model": "legacydelight:blocks/chopping_board", "y": 180},
-    "facing=west": {"model": "legacydelight:blocks/chopping_board", "y": 270}
-  }
-}

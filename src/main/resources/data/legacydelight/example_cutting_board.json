@@ -1,5 +1,5 @@
 {
-  "type": "legacydelight:chopping_board",
+  "type": "legacydelight:cutting_board",
   "input": {
     "item": "minecraft:log",
     "meta": 0

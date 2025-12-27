@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 /// TODO: Implement this bullshit.
-public class TileEntityChoppingBoard extends TileEntity {
+public class TileEntityCuttingBoard extends TileEntity {
 
     public boolean tryAddItem(ItemStack itemStack) {
         return false;
