@@ -39,6 +39,6 @@ dependencies {
     //runtimeOnlyNonPublishable("com.github.GTNewHorizons:WDMla:2.7.4:dev")
     implementation("com.github.GTNewHorizons:GTNHLib:0.8.34:dev")
 
-    implementation("io.thedogofchaos.data_retroportata:DataRetroportata:2a77c75")
+    //implementation("io.thedogofchaos.data_retroportata:DataRetroportata:2a77c75:dev")
     implementation("com.github.GTNewHorizons:Forgelin:2.0.3-GTNH:dev")
 }

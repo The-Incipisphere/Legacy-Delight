@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger
     version = Tags.VERSION,
     name = "Legacy Delight",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:gtnhlib@[0.8.34,);" + "required-after:data_retroportata;" + "required-after:forgelin@[2.0.3,);",
+    dependencies = "required-after:gtnhlib@[0.8.34,);" + "required-after:forgelin@[2.0.3,);",
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter",
 )
 object LegacyDelight {
