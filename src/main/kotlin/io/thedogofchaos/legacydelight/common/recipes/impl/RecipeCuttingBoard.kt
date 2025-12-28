@@ -1,0 +1,50 @@
+package io.thedogofchaos.legacydelight.common.recipes.impl
+
+import io.thedogofchaos.legacydelight.LegacyDelight.resLoc
+import io.thedogofchaos.legacydelight.common.recipes.IIngredient
+import io.thedogofchaos.legacydelight.common.recipes.IRecipe
+import io.thedogofchaos.legacydelight.common.recipes.IResult
+import net.minecraft.util.ResourceLocation
+import java.util.*
+
+/**
+ * Represents a recipe for the cutting board.
+ * (Can have a custom completion sound!)
+ *
+ * @param id A unique identifier for the recipe.
+ * @param input The item to be processed in the recipe.
+ * @param tool The tool required to perform the recipe.
+ * @param results All the results of the recipe.
+ * @param soundName The name of the sound to play when the recipe is performed.
+ *
+ * @throws NullPointerException If any params except `soundName` are null.
+ */
+data class RecipeCuttingBoard(
+    override val id: ResourceLocation,
+    val input: IIngredient,
+    val tool: IIngredient,
+    val results: Collection<IResult>,
+    val soundName: String? = null
+) : IRecipe {
+    override val type: ResourceLocation = resLoc("cutting_board")
+
+    init {
+        // Yes Kotlin, I know what the fuck I'm doing.
+        // These exist purely for Java Interop.
+        @Suppress("SENSELESS_COMPARISON")
+        when {
+            id == null -> throw IllegalArgumentException("Parameter 'id' must not be null. (this is literally the thing that identifies your recipe, why tf are you setting it to null)")
+            input == null -> throw IllegalArgumentException("Parameter 'input' must not be null. (ah yes, let me just hit my bare chopping board with my knife and produce chopped onions out of thin air)")
+            tool == null -> throw IllegalArgumentException("Parameter 'tool' must not be null. (what are you gonna hit those apples with? your fists?)")
+            results == null -> throw IllegalArgumentException("Parameter 'results' must not be null. (mfw my loaf of bread suddenly ceases to exist the moment i cut it)")
+        }
+    }
+
+    /**
+     * @return [Optional.empty] if [RecipeCuttingBoard.soundName] is null.
+     * Otherwise, returns an [Optional] containing the string of the sound to be played when a recipe is successfully completed.
+     */
+    fun getSoundName(): Optional<String> {
+        return Optional.ofNullable<String>(soundName)
+    }
+}
