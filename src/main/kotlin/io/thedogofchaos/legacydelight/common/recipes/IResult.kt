@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack
 import java.util.*
 
 /**
- * Blueprint for any recipe results.
+ * Common blueprint for any recipe results.
  */
 interface IResult {
     /** Yea, just pass a [Random] in.
