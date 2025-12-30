@@ -3,6 +3,7 @@ package io.thedogofchaos.legacydelight
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.SidedProxy
 import cpw.mods.fml.common.event.FMLInitializationEvent
+import cpw.mods.fml.common.event.FMLInterModComms
 import cpw.mods.fml.common.event.FMLPostInitializationEvent
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import cpw.mods.fml.common.event.FMLServerStartingEvent
@@ -29,28 +30,40 @@ object LegacyDelight {
     )
     lateinit var proxy: CommonProxy;
 
-    @Mod.EventHandler // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
-    // GameRegistry." (Remove if not needed)
+    /**
+     * This event is sent before anything else.
+     * We read our config, create blocks, items, etc, and register them with the GameRegistry.
+      */
+    @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         LOG.info("Legacy Delight v" + Tags.VERSION + ", cooking up some meals to go!")
         proxy.preInit(event)
     }
 
-    @Mod.EventHandler // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
+    /**
+     * This event is sent after [FMLPreInitializationEvent].
+     * We do our mod setup.
+     * We build whatever data structures we care about.
+     * We register recipes.
+     * We send [FMLInterModComms] to other mods, if needed.
+     */
+    @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
         proxy.init(event)
-
-        // MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
-        // FMLCommonHandler.instance()
-        // .bus()
-        // .register(new FMLEventHandler());
     }
 
-    @Mod.EventHandler // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
+    /**
+     * This event is always sent last in the initialisation sequence.
+     * We handle interactions with other mods, and complete our setup accordingly.
+     */
+    @Mod.EventHandler
     fun postInit(event: FMLPostInitializationEvent) {
         proxy.postInit(event)
     }
 
+    /**
+     * We do stuff you need to do to set up the server. register commands, tweak the server.
+     */
     @Mod.EventHandler // register server commands in this event handler (Remove if not needed)
     fun serverStarting(event: FMLServerStartingEvent) {
         proxy.serverStarting(event)
