@@ -1,10 +1,12 @@
 package io.thedogofchaos.legacydelight.common.recipes.impl
 
+import com.google.gson.JsonObject
 import io.thedogofchaos.legacydelight.LegacyDelight.resLoc
 import io.thedogofchaos.legacydelight.common.recipes.IIngredient
 import io.thedogofchaos.legacydelight.common.recipes.IRecipe
 import io.thedogofchaos.legacydelight.common.recipes.IResult
 import kotlinx.collections.immutable.ImmutableCollection
+import kotlinx.collections.immutable.toImmutableList
 import net.minecraft.util.ResourceLocation
 import java.util.*
 
@@ -47,5 +49,15 @@ data class RecipeCuttingBoard(
      */
     fun getSoundName(): Optional<String> {
         return Optional.ofNullable<String>(soundName)
+    }
+    companion object {
+        fun fromJson(json: JsonObject): IRecipe {
+            val input = IIngredient.fromJson(json.getAsJsonObject("input"))
+            val tool = IIngredient.fromJson(json.getAsJsonObject("tool"))
+            val results = json.getAsJsonArray("results")
+                .map<IResult> { IResult.fromJson(it.asJsonObject) }.
+                toImmutableList()
+            val soundName = json.getAsJsonObject("sound_name")?.get("name")?.asString
+        }
     }
 }

@@ -5,8 +5,7 @@
     "meta": 0
   },
   "tool": {
-    "oredict": "toolAxe",
-    "_comment": "NOTE: gonna need to think about how i get tool capabilities"
+    "_TODO": "Think about how tool capabilities are determined."
   },
   "results": [
     {

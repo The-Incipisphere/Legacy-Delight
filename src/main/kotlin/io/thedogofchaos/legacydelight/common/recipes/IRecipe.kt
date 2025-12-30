@@ -1,7 +1,11 @@
 package io.thedogofchaos.legacydelight.common.recipes
 
 import net.minecraft.util.ResourceLocation
-
+/**
+ * Common blueprint for all SerDe&Reg-able recipes.
+ *
+ * All implementations of this interface should be immutable, please and thank you.
+ */
 interface IRecipe {
     /** Because all individual recipes should have a unique identifier each. */
     val id: ResourceLocation
