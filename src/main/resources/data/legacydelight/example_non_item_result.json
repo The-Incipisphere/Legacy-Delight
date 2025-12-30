@@ -1,0 +1,31 @@
+{
+  "type": "legacydelight:cutting_recipe",
+  "input": {
+    "item": "hbm:man_core",
+    "count": 1,
+    "meta": 0,
+    "_comment": "NOTE: RECIPES TYPES CAN RESTRICT THE USE OF CERTAIN IMPLICIT OBJECTS LIKE count",
+    "_comment2": "EITHER BY OUTRIGHT DENYING THE OBJECT COMPLETELY, OR EXPECTING A VALUE WITHIN A CERTAIN RANGE, THROWING OTHERWISE",
+    "_comment3": "NOTE 2: item IS IMPLICIT, AND DOES NOT REQUIRE EXPLICITLY DEFINING THE TYPE",
+    "_comment4": "NOTE 3: (meta = -1) MATCHES **ALL** METADATA VALUES. THIS CAN BE BACKFIRE HORRIBLY, SO ****USE WITH EXTREME FUCKING CARE****"
+  },
+  "tool": {
+    "ore_dict": "toolKnife",
+    "_comment": "NOTE: ore_dict IS IMPLICIT, AND DOES NOT REQUIRE EXPLICITLY DEFINING THE TYPE"
+  },
+  "results" : [
+    {
+      "type": "hbm:mininuke",
+      "yield_preset": "LOW"
+    },
+    {
+      "type": "data_retroportata:chance_item",
+      "item": "hbm:nugget_cm_mix",
+      "chance": 2,
+      "_comment": "NOTE: CHANCE CAN ONLY EVER BE AN INTEGER, 0-100",
+      "_comment2": "AND WILL THROW AT DESERIALIZATION IF THIS IS NOT THE CASE (i.e. if someone passed 0.5)",
+      "_comment3": "NOTE 2: IF type IS PRESENT, THE JSON OBJECT WILL **NEVER** BE IMPLICITLY DESERIALIZED"
+    }
+  ],
+  "sound_name": ""
+}
