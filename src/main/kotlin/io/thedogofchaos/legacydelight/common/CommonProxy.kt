@@ -1,14 +1,15 @@
 package io.thedogofchaos.legacydelight.common
 
 import cpw.mods.fml.common.event.FMLInitializationEvent
+import cpw.mods.fml.common.event.FMLInterModComms
 import cpw.mods.fml.common.event.FMLPostInitializationEvent
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import cpw.mods.fml.common.event.FMLServerStartingEvent
 import io.thedogofchaos.legacydelight.Config
 import io.thedogofchaos.legacydelight.LegacyDelight
 import io.thedogofchaos.legacydelight.common.blocks.ModBlocks
+import io.thedogofchaos.legacydelight.common.recipes.RecipeManager
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.init.Items
 import net.minecraft.item.Item
 
 open class CommonProxy {
@@ -21,7 +22,9 @@ open class CommonProxy {
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
-    open fun init(event: FMLInitializationEvent) {}
+    open fun init(event: FMLInitializationEvent) {
+        RecipeManager.init()
+    }
 
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     open fun postInit(event: FMLPostInitializationEvent) {}
@@ -34,7 +37,7 @@ open class CommonProxy {
             override fun getTabIconItem(): Item {
                 // Full path to the field, for at-a-glance clarity.
                 // May be replaced in future with one of the items from this mod.
-                return Items.cooked_beef
+                return net.minecraft.init.Items.cooked_beef
             }
         }
     }
