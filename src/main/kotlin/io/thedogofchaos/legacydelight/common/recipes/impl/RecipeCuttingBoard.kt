@@ -4,6 +4,7 @@ import io.thedogofchaos.legacydelight.LegacyDelight.resLoc
 import io.thedogofchaos.legacydelight.common.recipes.IIngredient
 import io.thedogofchaos.legacydelight.common.recipes.IRecipe
 import io.thedogofchaos.legacydelight.common.recipes.IResult
+import kotlinx.collections.immutable.ImmutableCollection
 import net.minecraft.util.ResourceLocation
 import java.util.*
 
@@ -23,8 +24,8 @@ data class RecipeCuttingBoard(
     override val id: ResourceLocation,
     val input: IIngredient,
     val tool: IIngredient,
-    val results: Collection<IResult>,
-    val soundName: String? = null
+    val results: ImmutableCollection<IResult>,
+    private val soundName: String? = null
 ) : IRecipe {
     override val type: ResourceLocation = resLoc("cutting_board")
 
