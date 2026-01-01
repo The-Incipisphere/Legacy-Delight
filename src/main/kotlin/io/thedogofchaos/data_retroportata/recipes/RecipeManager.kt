@@ -1,8 +1,9 @@
-package io.thedogofchaos.legacydelight.common.recipes
+package io.thedogofchaos.data_retroportata.recipes
 
 import net.minecraft.util.ResourceLocation
 import java.util.Collections
 import java.util.Optional
+import kotlin.collections.get
 
 object RecipeManager {
     /**

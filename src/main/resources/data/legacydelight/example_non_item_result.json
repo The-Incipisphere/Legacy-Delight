@@ -16,7 +16,10 @@
   "results" : [
     {
       "type": "hbm:mininuke",
-      "yield_preset": "LOW"
+      "yield_preset": "LOW",
+      "_comment": "Example of non-item result. Note that I don't tell it to run arbitrary code via this object,",
+      "_comment2": "only that it says to the deserializer 'hey, this recipe invokes a pre-defined IResult implementation that we might know about,",
+      "_comment3": "let's go find it (and throw during deserialization if the implementation (the type) isn't anywhere to be found).'"
     },
     {
       "type": "data_retroportata:chance_item",

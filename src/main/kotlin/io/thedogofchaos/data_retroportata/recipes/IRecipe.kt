@@ -1,6 +1,7 @@
-package io.thedogofchaos.legacydelight.common.recipes
+package io.thedogofchaos.data_retroportata.recipes
 
 import net.minecraft.util.ResourceLocation
+
 /**
  * Common blueprint for all SerDe&Reg-able recipes.
  *

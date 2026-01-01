@@ -1,4 +1,4 @@
-package io.thedogofchaos.legacydelight.common.recipes
+package io.thedogofchaos.data_retroportata.recipes
 
 import net.minecraft.item.ItemStack
 

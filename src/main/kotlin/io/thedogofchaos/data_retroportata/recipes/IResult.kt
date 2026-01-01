@@ -1,7 +1,8 @@
-package io.thedogofchaos.legacydelight.common.recipes
+package io.thedogofchaos.data_retroportata.recipes
 
 import net.minecraft.item.ItemStack
-import java.util.*
+import java.util.Optional
+import java.util.Random
 
 /**
  * Common blueprint for any recipe results.

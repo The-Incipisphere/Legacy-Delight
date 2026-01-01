@@ -1,10 +1,9 @@
-package io.thedogofchaos.legacydelight.common.recipes.impl
+package io.thedogofchaos.legacydelight.common.recipes
 
-import com.google.gson.JsonObject
 import io.thedogofchaos.legacydelight.LegacyDelight.resLoc
-import io.thedogofchaos.legacydelight.common.recipes.IIngredient
-import io.thedogofchaos.legacydelight.common.recipes.IRecipe
-import io.thedogofchaos.legacydelight.common.recipes.IResult
+import io.thedogofchaos.data_retroportata.recipes.IIngredient
+import io.thedogofchaos.data_retroportata.recipes.IRecipe
+import io.thedogofchaos.data_retroportata.recipes.IResult
 import kotlinx.collections.immutable.ImmutableCollection
 import net.minecraft.util.ResourceLocation
 import java.util.*
