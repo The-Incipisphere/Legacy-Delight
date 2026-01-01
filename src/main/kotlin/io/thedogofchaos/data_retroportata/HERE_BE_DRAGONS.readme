@@ -1,0 +1,5 @@
+This package is home to the shitfuckination that is
+a (scuffed) backport of the datapack system to 1.7.10.
+
+If ye wish to traverse these files, expect a lot of bullshit, a lot of java.util.Optional instances,
+and manual construction of shit that was never meant to be manually constructed.
