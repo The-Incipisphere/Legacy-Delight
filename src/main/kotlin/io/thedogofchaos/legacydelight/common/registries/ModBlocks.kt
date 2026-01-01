@@ -1,7 +1,8 @@
-package io.thedogofchaos.legacydelight.common.blocks
+package io.thedogofchaos.legacydelight.common.registries
 
 import cpw.mods.fml.common.registry.GameRegistry
 import io.thedogofchaos.legacydelight.LegacyDelight
+import io.thedogofchaos.legacydelight.common.blocks.BlockCuttingBoard
 import net.minecraft.block.Block
 
 object ModBlocks {

@@ -1,4 +1,4 @@
-package io.thedogofchaos.data_retroportata.recipes
+package io.thedogofchaos.data_retroportata.common.recipes
 
 import net.minecraft.item.ItemStack
 import java.util.Optional

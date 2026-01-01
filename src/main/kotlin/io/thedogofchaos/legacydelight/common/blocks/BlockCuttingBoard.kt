@@ -12,8 +12,6 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.AxisAlignedBB
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
-import java.util.Optional
-import java.util.function.Consumer
 
 class BlockCuttingBoard : BlockContainer(Material.wood) {
     override fun isOpaqueCube(): Boolean {

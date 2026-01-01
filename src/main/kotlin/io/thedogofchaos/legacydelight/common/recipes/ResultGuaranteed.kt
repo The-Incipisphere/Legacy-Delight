@@ -1,6 +1,6 @@
 package io.thedogofchaos.legacydelight.common.recipes
 
-import io.thedogofchaos.data_retroportata.recipes.IResult
+import io.thedogofchaos.data_retroportata.common.recipes.IResult
 import net.minecraft.item.ItemStack
 import java.util.*
 

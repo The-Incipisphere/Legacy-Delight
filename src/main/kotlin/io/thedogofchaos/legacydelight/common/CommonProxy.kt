@@ -6,8 +6,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import cpw.mods.fml.common.event.FMLServerStartingEvent
 import io.thedogofchaos.legacydelight.Config
 import io.thedogofchaos.legacydelight.LegacyDelight
-import io.thedogofchaos.legacydelight.common.blocks.ModBlocks
-import io.thedogofchaos.data_retroportata.recipes.RecipeManager
+import io.thedogofchaos.legacydelight.common.registries.ModBlocks
+import io.thedogofchaos.data_retroportata.common.recipes.RecipeManager
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 
