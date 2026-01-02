@@ -6,6 +6,8 @@ import io.thedogofchaos.data_retroportata.common.recipes.IIngredient
 import io.thedogofchaos.data_retroportata.common.recipes.IRecipe
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
 import io.thedogofchaos.data_retroportata.common.recipes.RecipeSerializer
+import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
+import io.thedogofchaos.legacydelight.LegacyDelight
 import kotlinx.collections.immutable.ImmutableCollection
 import net.minecraft.util.ResourceLocation
 import java.util.*
@@ -23,13 +25,13 @@ import java.util.*
  * @throws NullPointerException If any params except `soundName` are null.
  */
 data class RecipeCuttingBoard(
-    override val id: ResourceLocation,
+    override val id: SaneResLoc,
     val input: IIngredient,
     val tool: IIngredient,
     val results: ImmutableCollection<IResult>,
     private val soundName: String? = null
 ) : IRecipe {
-    override val type: ResourceLocation = resLoc("cutting_board")
+    override val type = SaneResLoc(LegacyDelight.MODID,"cutting_board")
 
     init {
         // Yes Kotlin, I know what the fuck I'm doing.

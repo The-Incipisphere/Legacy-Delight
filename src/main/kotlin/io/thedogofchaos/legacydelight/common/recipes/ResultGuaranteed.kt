@@ -1,6 +1,7 @@
 package io.thedogofchaos.legacydelight.common.recipes
 
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
+import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import net.minecraft.item.ItemStack
 import java.util.*
 
@@ -16,4 +17,5 @@ class ResultGuaranteed(private val itemStack: ItemStack) : IResult {
      * @return An [Optional] containing a copy of the stored [ItemStack].
      */
     override fun getStack(rand: Random): Optional<ItemStack> = Optional.of(itemStack.copy())
+    override val type = SaneResLoc("data_retroportata", TODO())
 }

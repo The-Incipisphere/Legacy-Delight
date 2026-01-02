@@ -1,7 +1,9 @@
 package io.thedogofchaos.legacydelight.common.recipes
 
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
+import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
 import java.util.*
 import kotlin.ranges.coerceIn
 
@@ -14,6 +16,7 @@ class ResultChance(
     private val itemStack: ItemStack,
     chance: Int
 ) : IResult {
+    override val type = SaneResLoc("data_retroportata:chance_item")
     // clamp to 0-100
     val chance: Int = chance.coerceIn(0, 100)
 
