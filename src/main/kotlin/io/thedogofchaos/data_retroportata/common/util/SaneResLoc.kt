@@ -13,12 +13,24 @@ class SaneResLoc : Comparable<SaneResLoc> {
     private val domain: String
     private val path: String
 
+    /**
+     * Constructs from two seperate strings. Extremely basic, works just like a standard [ResourceLocation].
+     *
+     */
     private constructor(domain: String, path: String) {
         this.domain = assertValidDomain(domain, path)
         this.path = assertValidPath(domain, path)
     }
-    constructor(decomposedLocation: Array<String>) : this(decomposedLocation[0], decomposedLocation[1])
-    constructor(resourceLocation: String) : this(decompose(resourceLocation, ':'))
+
+    /**
+     * Constructs from a pair of two strings.
+     */
+    constructor(locationPair: Pair<String, String>) : this(locationPair.first, locationPair.second)
+
+    /**
+     * Constructs
+     */
+    constructor(resourceLocation: String) : this(unsafeSplitDomainAndPath(resourceLocation, ':'))
 
     override fun compareTo(other: SaneResLoc): Int {
         TODO("Not yet implemented")
@@ -28,18 +40,25 @@ class SaneResLoc : Comparable<SaneResLoc> {
     fun toResourceLocation(): ResourceLocation = ResourceLocation(domain, path);
 
     companion object {
-        private fun decompose(resLoc: String, seperator: Char): Array<String> {
-            val arrResLoc = arrayOf("minecraft", resLoc)
+        /**
+         * Splits a raw string into a [Pair] of the domain and path, based on a given [seperator].
+         *
+         * **DOES NOT validate the result.** May return empty or invalid strings.
+         */
+        private fun unsafeSplitDomainAndPath(resLoc: String, seperator: Char): Pair<String, String> {
+            var domain = "minecraft"
+            var path = resLoc
+
             val sepIndex: Int = resLoc.indexOf(seperator) // get the first seperator
             if (sepIndex >= 0) { // if the seperator is present...
-                arrResLoc[1] = resLoc.substring(sepIndex + 1) // ...set the 1st element to everything after the first separator.
+                path = resLoc.substring(sepIndex + 1) // ...set the path to everything after the first separator.
                 if (sepIndex >= 1) { // if there is anything before the first seperator...
-                    arrResLoc[0] = resLoc.substring(0, sepIndex); // ...set the 1st element to everything before the first separator.
+                    domain = resLoc.substring(0, sepIndex); // ...set the domain to everything before the first separator.
                 }
             }
-
-            return arrResLoc // we don't val validated here.
+            return domain to path // we don't validate here, we just cast and return the raw shit
         }
+
         private fun assertValidDomain(domain: String, path: String): String {
             if (!isValidDomain(domain)) {
                 throw ResourceLocationException("Non [a-z0-9_.-] character in domain of ResourceLocation: $domain:$path")
