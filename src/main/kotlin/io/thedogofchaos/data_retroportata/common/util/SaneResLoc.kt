@@ -14,10 +14,10 @@ class SaneResLoc : Comparable<SaneResLoc> {
     private val path: String
 
     /**
-     * Constructs from two seperate strings. Extremely basic, works just like a standard [ResourceLocation].
-     *
+     * Constructs from two separate strings.
+     * Extremely basic, works just like a standard [ResourceLocation].
      */
-    private constructor(domain: String, path: String) {
+    constructor(domain: String, path: String) {
         this.domain = assertValidDomain(domain, path)
         this.path = assertValidPath(domain, path)
     }
@@ -28,7 +28,7 @@ class SaneResLoc : Comparable<SaneResLoc> {
     constructor(locationPair: Pair<String, String>) : this(locationPair.first, locationPair.second)
 
     /**
-     * Constructs
+     *
      */
     constructor(resourceLocation: String) : this(unsafeSplitDomainAndPath(resourceLocation, ':'))
 
@@ -36,23 +36,30 @@ class SaneResLoc : Comparable<SaneResLoc> {
         TODO("Not yet implemented")
     }
 
+    override fun toString(): String = "$domain:$path"
+
     /** Easy converter, for interacting with shit that expects a bare [ResourceLocation]. */
     fun toResourceLocation(): ResourceLocation = ResourceLocation(domain, path);
 
+    fun toPair(): Pair<String, String> = domain to path
+
     companion object {
         /**
-         * Splits a raw string into a [Pair] of the domain and path, based on a given [seperator].
+         * Splits a raw string into a [Pair] of the domain and path, based on a given [separator].
          *
-         * **DOES NOT validate the result.** May return empty or invalid strings.
+         * **This method DOES NOT validate results itself, and may return strings that fail validation.**
+         *
+         * @see [validDomainChar]
+         * @see [validPathChar]
          */
-        private fun unsafeSplitDomainAndPath(resLoc: String, seperator: Char): Pair<String, String> {
+        private fun unsafeSplitDomainAndPath(resLoc: String, separator: Char): Pair<String, String> {
             var domain = "minecraft"
             var path = resLoc
 
-            val sepIndex: Int = resLoc.indexOf(seperator) // get the first seperator
-            if (sepIndex >= 0) { // if the seperator is present...
+            val sepIndex: Int = resLoc.indexOf(separator) // get the first separator
+            if (sepIndex >= 0) { // if the separator is present...
                 path = resLoc.substring(sepIndex + 1) // ...set the path to everything after the first separator.
-                if (sepIndex >= 1) { // if there is anything before the first seperator...
+                if (sepIndex >= 1) { // if there is anything before the first separator...
                     domain = resLoc.substring(0, sepIndex); // ...set the domain to everything before the first separator.
                 }
             }
@@ -72,35 +79,29 @@ class SaneResLoc : Comparable<SaneResLoc> {
         }
 
         /**
-         * @return `true` if the specified `path` is valid: consists only of `[a-z0-9/._-]` characters
+         * @return `true` if the specified `domain` is valid
+         * (i.e. consists only of characters matching `[a-z0-9_.-]`)
          */
-        fun isValidPath(path: String): Boolean {
-            for (i in 0..<path.length) {
-                if (!validPathChar(path[i])) {
-                    return false
-                }
-            }
-            return true
+        fun isValidDomain(domain: String) = domain.all { validDomainChar(it) }
+
+        /**
+         * @return `true` if the specified `path` is valid
+         * (i.e. consists only of characters that match `[a-z0-9/_.-]`)
+         */
+        fun isValidPath(path: String) = path.all { validPathChar(it) }
+
+        /**
+         * @return `true` if the specified char would be valid in a [SaneResLoc.domain] (i.e. matches `[a-z0-9_.-]`)
+         */
+        fun validDomainChar(domainChar: Char): Boolean {
+            return domainChar in 'a'..'z' || domainChar in '0'..'9' || domainChar == '_' || domainChar == '.' || domainChar == '-'
         }
 
         /**
-         * @return `true` if the specified `domain` is valid: consists only of `[a-z0-9_.-]` characters
+         * @return `true` if the specified char would be valid in a [SaneResLoc.path] (i.e. matches `[a-z0-9/_.-]`)
          */
-        fun isValidDomain(domain: String): Boolean {
-            for (i in 0..<domain.length) {
-                if (!validDomainChar(domain[i])) {
-                    return false
-                }
-            }
-            return true
-        }
-
         fun validPathChar(pathChar: Char): Boolean {
-            return pathChar == '_' || pathChar == '-' || pathChar in 'a'..'z' || pathChar in '0'..'9' || pathChar == '/' || pathChar == '.'
-        }
-
-        fun validDomainChar(domainChar: Char): Boolean {
-            return domainChar == '_' || domainChar == '-' || domainChar in 'a'..'z' || domainChar in '0'..'9' || domainChar == '.'
+            return pathChar in 'a'..'z' || pathChar in '0'..'9' || pathChar == '/' || pathChar == '_' || pathChar == '.' || pathChar == '-'
         }
     }
 }
