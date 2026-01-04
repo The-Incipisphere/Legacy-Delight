@@ -1,0 +1,32 @@
+{
+  "_comment": "The deserializer only looks for specifically named elements, and ignores all others. So, go wild with comments.",
+  "type": "legacydelight:cutting_board",
+  "input": {
+    "item": "minecraft:melon_block",
+    "_count": "NOTE: For this recipe type, this will fail to deserialize if not set to 1, and thus is redundant, because Cutting Boards only cut one item at a time, and count defaults to 1 if not present.",
+    "_meta": "TODO: Have gotta find out a way of reliably checking if a given metadata value maps to anything tangible on the corresponding ItemStack or Block."
+  },
+  "tool": {
+    "_comment": "TODO: I REALLY need to consider how tool capabilities are determined in-code. Maybe after I get the rest of the infrastructure up.",
+    "type": "data_retroportata:tool_capability",
+    "capability": "axe_dig"
+  },
+  "_comment2": "Yes, this is an array. Making it an object for this recipe type would be tearing-my-legs-off-entirely levels of footgun",
+  "results": [
+    {
+      "_comment": "Making this a container type is honestly the least duplicative way to go about this atm (also allows layered effects and chances, if people are that invested or deranged)",
+      "type": "data_retroportata:result/chance",
+      "chance": 50,
+      "container": [
+        {
+          "item": "minecraft:melon_seeds"
+        }
+      ]
+    },
+    {
+      "item": "minecraft:melon",
+      "count": 9,
+      "_meta": "For this recipe type, this will fail to deserialize if set to -1, because it's illogical to try to match all metadata values for an output."
+    }
+  ]
+}
