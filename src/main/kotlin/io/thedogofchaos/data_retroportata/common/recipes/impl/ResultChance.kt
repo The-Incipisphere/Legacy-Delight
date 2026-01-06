@@ -1,11 +1,10 @@
-package io.thedogofchaos.legacydelight.common.recipes
+package io.thedogofchaos.data_retroportata.common.recipes.impl
 
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ResourceLocation
-import java.util.*
-import kotlin.ranges.coerceIn
+import java.util.Optional
+import java.util.Random
 
 /**
  * Represents an ItemStack that has a CHANCE to be given as the result of a recipe.
@@ -24,9 +23,9 @@ class ResultChance(
      * Gives a copy of the ItemStack for this recipe result... or not. (Depends on the defined chance).
      * Do you feel lucky?
      *
-     * @param rand The [Random] instance to use.
-     * @return A [Optional]. Contains a copy of the stored [ItemStack]
-     * if the chance roll succeeds, or [Optional.empty] otherwise.
+     * @param rand The [java.util.Random] instance to use.
+     * @return A [java.util.Optional]. Contains a copy of the stored [ItemStack]
+     * if the chance roll succeeds, or [java.util.Optional.empty] otherwise.
      */
     override fun getStack(rand: Random): Optional<ItemStack> {
         return if (rand.nextInt(100) < chance) {
