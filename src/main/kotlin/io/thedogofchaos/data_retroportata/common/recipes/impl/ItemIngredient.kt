@@ -1,42 +1,29 @@
 package io.thedogofchaos.data_retroportata.common.recipes.impl
 
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.google.gson.JsonParseException
 import cpw.mods.fml.common.registry.GameRegistry
 import io.thedogofchaos.data_retroportata.common.recipes.IIngredient
 import io.thedogofchaos.data_retroportata.common.recipes.IIngredientSerializer
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
+import io.thedogofchaos.data_retroportata.common.util.SerializationUtils
 import net.minecraft.item.ItemStack
 
 /**
  * Describes a basic ingredient item.
  */
-data class ItemIngredient(val itemStack: ItemStack, val matchAllMeta: Boolean) : IIngredient {
+// TODO: Convert this bullshit into a holder.
+data class ItemIngredient(val itemStack: ItemStack, val metaWildcard: Boolean) : IIngredient {
     override val type: SaneResLoc = SaneResLoc("data_retroportata","item")
 
     companion object Serializer: IIngredientSerializer {
         override fun fromJson(jsonObject: JsonObject): ItemIngredient {
-            val item = run { // i put this in a run block for better clarity of what this shit does.
-                val itemElement: JsonElement = jsonObject.get("item") ?: throw JsonParseException(
-                    "Item is REQUIRED (missing \"item\" element)"
-                )
-                if (itemElement.isJsonNull) throw JsonParseException(
-                    "Item MUST NOT be explicitly set to null (i.e. \"item\": null)"
-                )
-                if (!itemElement.isJsonPrimitive || !itemElement.asJsonPrimitive.isString) throw JsonParseException("Item MUST be a string, got: $itemElement")
-                SaneResLoc(itemElement.asString).toPair()
-            }
-            val count: Int = jsonObject.get("count")?.takeIf { !it.isJsonNull }?.asInt ?: 1
-            val meta: Int = jsonObject.get("meta")?.takeIf { !it.isJsonNull }?.asInt ?: 0
+            val (itemStack, metaWildcard) = SerializationUtils.parseItemStack(jsonObject)
 
             return ItemIngredient(
-                ItemStack(
-                    GameRegistry.findItem(item.first, item.second),
-                    count,
-                    meta
-                ),
-                (meta == -1),
+                itemStack,
+                // FIXME: always false, since net.minecraft.item.ItemStack#ItemStack(net.minecraft.item.Item, int, int)
+                //  always sets itemDamage to 0 if it's less than 0
+                metaWildcard
             )
         }
     }

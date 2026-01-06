@@ -62,4 +62,9 @@ data class RecipeCuttingBoard(
 //            RecipeCuttingBoard(id, input, tool, results, soundName)
 //        }
 //    }
+    companion object Serializer : RecipeSerializer<RecipeCuttingBoard> {
+        override fun fromJson(id: ResourceLocation, json: JsonObject): RecipeCuttingBoard {
+            TODO("Need to figure out how the fuck i avoid pigeonholing data_retroportata:data/item_stack and data_retroportata:data/ore_dict")
+        }
+    }
 }
