@@ -9,6 +9,7 @@ import java.util.Random
 /**
  * Represents an ItemStack GUARANTEED to be given as the result of a recipe.
  */
+@Deprecated("wtf was i thinking with this one")
 class ResultGuaranteed(private val itemStack: ItemStack) : IResult {
 
     /**

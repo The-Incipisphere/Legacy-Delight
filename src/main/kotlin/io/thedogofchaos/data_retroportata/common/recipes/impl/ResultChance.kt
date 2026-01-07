@@ -11,11 +11,12 @@ import java.util.Random
  * @param chance The chance of the itemstack being returned by [ResultChance.getStack].
  * (Automatically clamped to the range 0-100)
  */
+// TODO: Overhaul this class to make it into a 'container' to put other components inside.
 class ResultChance(
     private val itemStack: ItemStack,
     chance: Int
 ) : IResult {
-    override val type = SaneResLoc("data_retroportata:chance_item")
+    override val type = SaneResLoc("data_retroportata","chance_item")
     // clamp to 0-100
     val chance: Int = chance.coerceIn(0, 100)
 
