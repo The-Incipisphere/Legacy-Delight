@@ -1,11 +1,10 @@
 package io.thedogofchaos.legacydelight.common.recipes
 
 import com.google.gson.JsonObject
-import io.thedogofchaos.legacydelight.LegacyDelight.resLoc
-import io.thedogofchaos.data_retroportata.common.recipes.IIngredient
+import io.thedogofchaos.data_retroportata.common.recipes.IComponent
 import io.thedogofchaos.data_retroportata.common.recipes.IRecipe
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
-import io.thedogofchaos.data_retroportata.common.recipes.RecipeSerializer
+import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import io.thedogofchaos.legacydelight.LegacyDelight
 import kotlinx.collections.immutable.ImmutableCollection
@@ -26,8 +25,9 @@ import java.util.*
  */
 data class RecipeCuttingBoard(
     override val id: SaneResLoc,
-    val input: IIngredient,
-    val tool: IIngredient,
+    // TODO: Rethink how I pull in components of a recipe
+    val input: IComponent,
+    val tool: IComponent,
     val results: ImmutableCollection<IResult>,
     private val soundName: String? = null
 ) : IRecipe {
@@ -62,8 +62,8 @@ data class RecipeCuttingBoard(
 //            RecipeCuttingBoard(id, input, tool, results, soundName)
 //        }
 //    }
-    companion object Serializer : RecipeSerializer<RecipeCuttingBoard> {
-        override fun fromJson(id: ResourceLocation, json: JsonObject): RecipeCuttingBoard {
+    companion object Serializer : ISerializableRecipe<RecipeCuttingBoard> {
+        override fun fromJson(id: SaneResLoc, json: JsonObject): RecipeCuttingBoard {
             TODO("Need to figure out how the fuck i avoid pigeonholing data_retroportata:data/item_stack and data_retroportata:data/ore_dict")
         }
     }

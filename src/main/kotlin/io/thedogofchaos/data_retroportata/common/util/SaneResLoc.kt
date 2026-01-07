@@ -10,12 +10,17 @@ import net.minecraft.util.ResourceLocation
  * @author TheDogOfChaos (Kotlin adaptation and 1.7.10 backport)
  */
 class SaneResLoc : Comparable<SaneResLoc> {
+    /**
+     * AKA: Namespace, Mod ID, Datapack ID
+     */
     private val domain: String
     private val path: String
 
     /**
-     * Constructs from two separate strings.
-     * Extremely basic, works just like a standard [ResourceLocation].
+     * Constructs from two separate strings (domain & path).
+     *
+     * The provided Domain and Path are both validated.
+     * @throws ResourceLocationException if either the domain or path contain
      */
     constructor(domain: String, path: String) {
         this.domain = assertValidDomain(domain, path)
