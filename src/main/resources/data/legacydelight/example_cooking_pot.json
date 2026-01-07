@@ -12,7 +12,7 @@
     "count": 1
   },
   "serve_on": {
-    "oredict": "dishPlate"
+    "ore_dict": "dishPlate"
   },
   "cooking_time": 200,
   "experience": 1.0
