@@ -9,6 +9,7 @@ import java.util.Random
 /**
  * Common blueprint for any recipe results.
  */
+// TODO: Needs a major rewrite. (Or to be nuked entirely.)
 interface IResult {
     /** Yea, just pass a [Random] in.
      * Don't forget to handle the [Optional] tho. */
