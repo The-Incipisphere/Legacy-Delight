@@ -7,5 +7,7 @@ interface IComponent {
     // fun matches(itemStack: ItemStack?): Boolean
 }
 
+// "It can't be that easy."
+// "It's that easy."
 interface IInputComponent : IComponent
 interface IOutputComponent : IComponent
