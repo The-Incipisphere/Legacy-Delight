@@ -1,7 +1,7 @@
 package io.thedogofchaos.data_retroportata.common.recipes.impl
 
 import com.google.gson.JsonObject
-import io.thedogofchaos.data_retroportata.common.recipes.IComponent
+import io.thedogofchaos.data_retroportata.MOD_ID
 import io.thedogofchaos.data_retroportata.common.recipes.IInputComponent
 import io.thedogofchaos.data_retroportata.common.recipes.IRecipe
 import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
@@ -23,7 +23,7 @@ data class ShapedCraftingRecipe(
     val pattern: ImmutableList<String>,
     val result: ItemStackComponent,
 ) : IRecipe<ContainerWorkbench> {
-    override val type = SaneResLoc("data_retroportata","crafting_shaped")
+    override val type = SaneResLoc(MOD_ID,"crafting_shaped")
 
     init {
         // doing a compile-time check for this would be more than painful
