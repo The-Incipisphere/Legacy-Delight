@@ -9,9 +9,7 @@ import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import net.minecraft.inventory.ContainerWorkbench
-import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
 /**
@@ -19,16 +17,21 @@ import net.minecraft.world.World
  */
 data class ShapedCraftingRecipe(
     override val id: SaneResLoc,
-    val key: ImmutableMap<String, IInputComponent>,
+    val legend: ImmutableMap<String, IInputComponent>,
     val pattern: ImmutableList<String>,
     val result: ItemStackComponent,
 ) : IRecipe<ContainerWorkbench> {
     override val type = SaneResLoc(MOD_ID,"crafting_shaped")
 
     init {
-        // doing a compile-time check for this would be more than painful
-        require(key.values.all { it is ItemStackComponent || it is OreDictComponent }) { "(TODO: WRITE COOL SHIT) "}
-        require(key.size <= 9) { "Shaped recipe key cannot have more than 9 entries." }
+        // Validate the legend...
+        require(legend.isNotEmpty()) {"ShapedCraftingRecipe legends must not be empty."}
+        require(legend.size <= 9) { "ShapedCraftingRecipe legends cannot be more than 9 entries long, got ${legend.size} entries." }
+        legend.entries.forEach { (symbol, component) ->
+            require(symbol.isNotBlank() && symbol.length == 1) {"ShapedCraftingRecipe legend symbols MUST be exactly 1 non-whitespace character long, got $symbol"}
+            // doing a compile-time check for this would be more than painful, so.. runtime is the best i'm gonna get.
+            require(component is ItemStackComponent || component is OreDictComponent) {"ShapedCraftingRecipe legend components MUST be an ItemStackComponent or OreDictComponent, got $component"}
+        }
     }
 
     override fun matches(
