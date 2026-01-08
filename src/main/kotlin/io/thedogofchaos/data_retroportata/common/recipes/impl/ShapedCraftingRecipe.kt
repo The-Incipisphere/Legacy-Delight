@@ -8,25 +8,34 @@ import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
+import net.minecraft.inventory.ContainerWorkbench
+import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
 
 /**
  * Describes a shaped recipe for a vanilla crafting table.
  */
 data class ShapedCraftingRecipe(
     override val id: SaneResLoc,
-    // FOOTGUN ALERT: If I were to make any Results implement IComponent,
-    // 'key' would be able to have results as *inputs*...
-    // which is a nightmare to figure out what to do with.
     val key: ImmutableMap<String, IInputComponent>,
-    val pattern : ImmutableList<String>,
-) : IRecipe {
+    val pattern: ImmutableList<String>,
+    val result: ItemStackComponent,
+) : IRecipe<ContainerWorkbench> {
     override val type = SaneResLoc("data_retroportata","crafting_shaped")
 
-
     init {
+        // doing a compile-time check for this would be more than painful
+        require(key.values.all { it is ItemStackComponent || it is OreDictComponent }) { "(TODO: WRITE COOL SHIT) "}
         require(key.size <= 9) { "Shaped recipe key cannot have more than 9 entries." }
+    }
+
+    override fun matches(
+        container: ContainerWorkbench,
+        world: World
+    ): Boolean {
+        TODO("Not yet implemented")
     }
 
     companion object Serializer : ISerializableRecipe<ShapedCraftingRecipe> {
