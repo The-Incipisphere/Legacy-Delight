@@ -2,6 +2,8 @@ package io.thedogofchaos.legacydelight.common.recipes
 
 import com.google.gson.JsonObject
 import io.thedogofchaos.data_retroportata.common.recipes.IComponent
+import io.thedogofchaos.data_retroportata.common.recipes.IInputComponent
+import io.thedogofchaos.data_retroportata.common.recipes.IOutputComponent
 import io.thedogofchaos.data_retroportata.common.recipes.IRecipe
 import io.thedogofchaos.data_retroportata.common.recipes.IResult
 import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
@@ -26,17 +28,25 @@ import java.util.*
 data class RecipeCuttingBoard(
     override val id: SaneResLoc,
     // TODO: Rethink how I pull in components of a recipe
-    val input: IComponent,
-    val tool: IComponent,
-    val results: ImmutableCollection<IResult>,
+    val input: IInputComponent,
+    val tool: IInputComponent, // todo: change to tool capability later
+    val results: ImmutableCollection<IOutputComponent>,
     private val soundName: String? = null
 ) : IRecipe {
     override val type = SaneResLoc(LegacyDelight.MODID,"cutting_board")
+
 
     init {
         // Yes Kotlin, I know what the fuck I'm doing.
         // These exist purely for Java Interop.
         @Suppress("SENSELESS_COMPARISON")
+        run {
+            require(id != null) {"Parameter 'id' must not be null. (this is literally the thing that identifies your recipe, why tf are you setting it to null)"}
+            require(input != null)
+        }
+
+
+
         when {
             id == null -> throw IllegalArgumentException("Parameter 'id' must not be null. (this is literally the thing that identifies your recipe, why tf are you setting it to null)")
             input == null -> throw IllegalArgumentException("Parameter 'input' must not be null. (ah yes, let me just hit my bare chopping board with my knife and produce chopped onions out of thin air)")

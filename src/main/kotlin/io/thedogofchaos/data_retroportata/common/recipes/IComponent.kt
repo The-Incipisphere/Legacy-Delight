@@ -6,3 +6,6 @@ interface IComponent {
     val type: SaneResLoc
     // fun matches(itemStack: ItemStack?): Boolean
 }
+
+interface IInputComponent : IComponent
+interface IOutputComponent : IComponent

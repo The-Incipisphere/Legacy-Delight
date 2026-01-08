@@ -5,6 +5,8 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParseException
 import cpw.mods.fml.common.registry.GameRegistry
 import io.thedogofchaos.data_retroportata.common.recipes.IComponent
+import io.thedogofchaos.data_retroportata.common.recipes.IInputComponent
+import io.thedogofchaos.data_retroportata.common.recipes.IOutputComponent
 import io.thedogofchaos.data_retroportata.common.recipes.ISerializableComponent
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import net.minecraft.item.ItemStack
@@ -12,7 +14,7 @@ import net.minecraft.item.ItemStack
 /**
  * Describes a bog-standard [ItemStack] in a serializable manner, for use with serializable recipes.
  */
-data class ItemStackComponent(val itemStack: ItemStack, val metaWildcard: Boolean) : IComponent {
+data class ItemStackComponent(val itemStack: ItemStack, val metaWildcard: Boolean) : IInputComponent, IOutputComponent {
     override val type: SaneResLoc = SaneResLoc("data_retroportata","item_stack")
 
     companion object Serializer: ISerializableComponent<ItemStackComponent> {
