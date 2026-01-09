@@ -17,7 +17,7 @@ import net.minecraft.world.World
  */
 data class ShapedCraftingRecipe(
     override val id: SaneResLoc,
-    val legend: ImmutableMap<String, IInputComponent>,
+    val legend: ImmutableMap<Char, IInputComponent>,
     val pattern: ImmutableList<String>,
     val result: ItemStackComponent,
 ) : IRecipe<ContainerWorkbench> {
@@ -25,14 +25,22 @@ data class ShapedCraftingRecipe(
 
     init {
         // Validate the legend...
-        require(legend.isNotEmpty()) {"ShapedCraftingRecipe legends must not be empty."}
-        require(legend.size <= 9) { "ShapedCraftingRecipe legends cannot be more than 9 entries long, got ${legend.size} entries." }
+        require(legend.size in 1..9) { "ShapedCraftingRecipe legends must be between 1 and 9 entries long, got '${legend.size}' entries." }
         legend.entries.forEach { (symbol, component) ->
-            require(symbol.isNotBlank() && symbol.length == 1) {"ShapedCraftingRecipe legend symbols MUST be exactly 1 non-whitespace character long, got $symbol"}
+            require(!symbol.isWhitespace()) {"ShapedCraftingRecipe legend symbols MUST be non-whitespace, got $symbol"}
             // doing a compile-time check for this would be more than painful, so.. runtime is the best i'm gonna get.
             require(component is ItemStackComponent || component is OreDictComponent) {"ShapedCraftingRecipe legend components MUST be an ItemStackComponent or OreDictComponent, got $component"}
         }
+        // ...and then validate that the pattern conforms to the legend.
+        require(pattern.size in 1..3) {"ShapedCraftingRecipe pattern must be between 1 and 3 rows long, got '${pattern.size}' rows."}
+        pattern.forEachIndexed { rowIndex, row ->
+            require(row.length in 1..3) { "Row $rowIndex of pattern must have 1–3 columns, got '${row.length}' columns" }
+            val unknownChars: String = row.filter { it !in legend.keys && it != ' '}
+            require(unknownChars.isEmpty()) { "Pattern row $rowIndex contains unknown symbols: $unknownChars" }
+        }
     }
+
+    fun symbolAt(row: Int, col: Int): Char = pattern[row][col]
 
     override fun matches(
         container: ContainerWorkbench,
