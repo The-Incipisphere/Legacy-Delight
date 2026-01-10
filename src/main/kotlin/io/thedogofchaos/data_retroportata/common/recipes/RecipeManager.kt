@@ -7,18 +7,19 @@ import java.util.Optional
 import kotlin.collections.get
 
 object RecipeManager {
-    /**
-     * Mutable map, for use with setters and internal mutation.
-     *
-     * If you touch this via ASM/Mixins/Reflection, and shit ends up breaking, don't come crying to me.
-     */
+/*
+    / **
+    * Mutable map, for use with setters and internal mutation.
+    *
+    * If you touch this via ASM/Mixins/Reflection, and shit ends up breaking, don't come crying to me.
+    * /
     private var recipesInternal: MutableMap<SaneResLoc, IRecipe> = mutableMapOf()
 
-    /**
-     * A ***LIVE BUT UNMODIFIABLE*** view of [recipesInternal], for use with getters. **THIS IS NOT A COPY.**
-     *
-     * (I'm not letting people shoot themselves in the feet THAT easily.)
-     */
+    / **
+    * A ***LIVE BUT UNMODIFIABLE*** view of [recipesInternal], for use with getters. **THIS IS NOT A COPY.**
+    *
+    * (I'm not letting people shoot themselves in the feet THAT easily.)
+    * /
     val recipes: Map<SaneResLoc, IRecipe> get() = Collections.unmodifiableMap(recipesInternal)
 
     fun register(recipe: IRecipe) {
@@ -28,11 +29,12 @@ object RecipeManager {
         recipesInternal[recipe.id] = recipe
     }
 
-    /**
-     * Returns [Optional]
-     */
+    / **
+    * Returns [Optional]
+    * /
     fun getRecipe(id: SaneResLoc?): Optional<IRecipe> = Optional.ofNullable(recipes[id]);
 
     // TODO: THIS WILL BE MOVED SOMEWHERE ELSE ONCE RECIPEMANAGER IS PART OF DATA_RETROPORTATA
     fun init() {}
+*/
 }

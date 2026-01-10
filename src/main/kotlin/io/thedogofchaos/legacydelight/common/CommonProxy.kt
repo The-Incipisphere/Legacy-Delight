@@ -22,7 +22,7 @@ open class CommonProxy {
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     open fun init(event: FMLInitializationEvent) {
-        RecipeManager.init()
+        //RecipeManager.init()
     }
 
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
