@@ -10,7 +10,9 @@ import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import io.thedogofchaos.legacydelight.LegacyDelight
 import kotlinx.collections.immutable.ImmutableCollection
+import net.minecraft.inventory.Container
 import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
 import java.util.*
 
 /**
@@ -32,8 +34,14 @@ data class RecipeCuttingBoard(
     val tool: IInputComponent, // todo: change to tool capability later
     val results: ImmutableCollection<IOutputComponent>,
     private val soundName: String? = null
-) : IRecipe {
+) : IRecipe<Container> {
     override val type = SaneResLoc(LegacyDelight.MODID,"cutting_board")
+    override fun matches(
+        container: Container,
+        world: World
+    ): Boolean {
+        TODO("Not yet implemented")
+    }
 
 
     init {
@@ -72,9 +80,13 @@ data class RecipeCuttingBoard(
 //            RecipeCuttingBoard(id, input, tool, results, soundName)
 //        }
 //    }
-    companion object Serializer : ISerializableRecipe<RecipeCuttingBoard> {
+    object Serializer : ISerializableRecipe<RecipeCuttingBoard> {
         override fun fromJson(id: SaneResLoc, json: JsonObject): RecipeCuttingBoard {
             TODO("Need to figure out how the fuck i avoid pigeonholing data_retroportata:data/item_stack and data_retroportata:data/ore_dict")
         }
+
+    override fun toJson(): JsonObject {
+        TODO("Not yet implemented")
     }
+}
 }

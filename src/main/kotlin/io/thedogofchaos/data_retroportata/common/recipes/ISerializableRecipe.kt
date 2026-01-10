@@ -5,5 +5,6 @@ import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 
 interface ISerializableRecipe<T : IRecipe<*>> {
     fun fromJson(id: SaneResLoc, json: JsonObject): T
+    fun toJson(): JsonObject
 }
 

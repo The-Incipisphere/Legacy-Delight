@@ -5,25 +5,30 @@ import io.thedogofchaos.data_retroportata.MOD_ID
 import io.thedogofchaos.data_retroportata.common.recipes.IInputComponent
 import io.thedogofchaos.data_retroportata.common.recipes.IRecipe
 import io.thedogofchaos.data_retroportata.common.recipes.ISerializableRecipe
+import io.thedogofchaos.data_retroportata.common.recipes.Slot
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import net.minecraft.inventory.ContainerWorkbench
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
+import java.util.Optional
 
 /**
- * Describes a shaped recipe for a vanilla crafting table.
+ * Describes a shaped recipe for a vanilla (3x3) crafting table.
  */
 data class ShapedCraftingRecipe(
     override val id: SaneResLoc,
-    val legend: ImmutableMap<Char, IInputComponent>,
-    val pattern: ImmutableList<String>,
+    val legend: ImmutableMap<Char, IInputComponent>, // TODO: NUKE THIS BULLSHIT
+    val pattern: ImmutableList<String>, // TODO: NUKE THIS BULLSHIT
     val result: ItemStackComponent,
 ) : IRecipe<ContainerWorkbench> {
     override val type = SaneResLoc(MOD_ID,"crafting_shaped")
 
-    init {
+    init { // TODO: NUKE THIS BULLSHIT
         // Validate the legend...
         require(legend.size in 1..9) { "ShapedCraftingRecipe legends must be between 1 and 9 entries long, got '${legend.size}' entries." }
         legend.entries.forEach { (symbol, component) ->
@@ -49,11 +54,42 @@ data class ShapedCraftingRecipe(
         TODO("Not yet implemented")
     }
 
-    companion object Serializer : ISerializableRecipe<ShapedCraftingRecipe> {
+    companion object {
+        fun isAcceptableInput(component: IInputComponent): Boolean = (component is ItemStackComponent || component is OreDictComponent)
+
+        fun dissolvePattern(pattern: List<String>, legend: Map<Char, IInputComponent>) : ImmutableList<Slot> {
+            val inputList = mutableListOf<Slot>()
+            val usedSymbols = mutableSetOf<Char>()
+
+            for (row in pattern) {
+                for (col in row) {
+                    if (col == ' ') {
+                        inputList.add(Slot.Empty)
+                    } else {
+                        legend[col]?.let {
+                            inputList.add(Slot.Filled(it))
+                        } ?: error("Pattern references symbol '$col', but that symbol is not defined in the legend.")
+                        usedSymbols.add(col)
+                    }
+                }
+            }
+            val unusedSymbols = (legend.keys - usedSymbols)
+            check(unusedSymbols.isEmpty()) {"Legend defines symbols that aren't used anywhere in the pattern: $unusedSymbols "}
+
+            // TODO: Somehow check if we still have unused symbols in the legend.
+            return inputList.toImmutableList()
+        }
+    }
+
+    object Serializer : ISerializableRecipe<ShapedCraftingRecipe> {
         override fun fromJson(
             id: SaneResLoc,
             json: JsonObject
         ): ShapedCraftingRecipe {
+            TODO("Focusing on other parts of the mod currently.")
+        }
+
+        override fun toJson(): JsonObject {
             TODO("Focusing on other parts of the mod currently.")
         }
     }

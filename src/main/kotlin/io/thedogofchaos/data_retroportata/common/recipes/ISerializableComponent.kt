@@ -8,4 +8,5 @@ import com.google.gson.JsonObject
  */
 interface ISerializableComponent<T : IComponent> {
     fun fromJson(jsonObject: JsonObject): T
+    fun toJson(): JsonObject
 }
