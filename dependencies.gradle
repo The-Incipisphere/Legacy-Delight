@@ -41,5 +41,5 @@ dependencies {
 
     //implementation("io.thedogofchaos.data_retroportata:DataRetroportata:2a77c75:dev")
     implementation("com.github.GTNewHorizons:Forgelin:2.0.3-GTNH:dev")
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
+    shadowImplementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
 }
