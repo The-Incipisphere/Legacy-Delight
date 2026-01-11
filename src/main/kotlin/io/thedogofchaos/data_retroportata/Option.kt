@@ -4,7 +4,7 @@ package io.thedogofchaos.data_retroportata
 @JvmInline
 value class Option<out T> internal constructor(internal val value: Any?) {
     companion object {
-        fun <T> some(value: T): Option<T> = Option(value)
+        fun <T : Any> some(value: T): Option<T> = Option(value)
         fun <T> none(): Option<T> = Option(makeNone())
     }
 
@@ -14,10 +14,10 @@ value class Option<out T> internal constructor(internal val value: Any?) {
     @Suppress("UNCHECKED_CAST")
     fun unwrap(): T = when {
         isSome -> value
-        else -> throw IllegalStateException("Called Option.unwrap() on a None value!")
+        else -> throw NoSuchElementException("Called Option.unwrap() on a None value!")
     } as T
 
-    internal class None
+    internal object None
 }
 
-internal fun makeNone(): Any = Option.None()
+internal fun makeNone(): Option.None = Option.None
