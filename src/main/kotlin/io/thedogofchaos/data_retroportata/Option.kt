@@ -18,6 +18,8 @@ value class Option<out T> internal constructor(internal val value: Any?) {
     } as T
 
     internal object None
+
+    override fun toString(): String = if (isSome) "Some(value=$value)" else "None"
 }
 
 internal fun makeNone(): Option.None = Option.None
