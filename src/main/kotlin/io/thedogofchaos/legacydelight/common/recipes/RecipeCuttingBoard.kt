@@ -43,24 +43,19 @@ data class RecipeCuttingBoard(
         TODO("Not yet implemented")
     }
 
+    override fun validate(): Boolean {
+        TODO("Not yet implemented")
+    }
 
     init {
-        // Yes Kotlin, I know what the fuck I'm doing.
-        // These exist purely for Java Interop.
-        @Suppress("SENSELESS_COMPARISON")
-        run {
-            require(id != null) {"Parameter 'id' must not be null. (this is literally the thing that identifies your recipe, why tf are you setting it to null)"}
-            require(input != null)
-        }
-
-
-
+        /*
         when {
             id == null -> throw IllegalArgumentException("Parameter 'id' must not be null. (this is literally the thing that identifies your recipe, why tf are you setting it to null)")
             input == null -> throw IllegalArgumentException("Parameter 'input' must not be null. (ah yes, let me just hit my bare chopping board with my knife and produce chopped onions out of thin air)")
             tool == null -> throw IllegalArgumentException("Parameter 'tool' must not be null. (what are you gonna hit those apples with? your fists?)")
             results == null -> throw IllegalArgumentException("Parameter 'results' must not be null. (mfw my loaf of bread suddenly ceases to exist the moment i cut it)")
         }
+        */
     }
 
     /**

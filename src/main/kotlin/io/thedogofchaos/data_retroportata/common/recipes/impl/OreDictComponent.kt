@@ -3,6 +3,7 @@ package io.thedogofchaos.data_retroportata.common.recipes.impl
 import io.thedogofchaos.data_retroportata.MOD_ID
 import io.thedogofchaos.data_retroportata.common.recipes.IInputComponent
 import io.thedogofchaos.data_retroportata.common.util.SaneResLoc
+import net.minecraftforge.oredict.OreDictionary
 
 data class OreDictComponent(
     val oreDict: String
@@ -10,6 +11,7 @@ data class OreDictComponent(
     override val type = SaneResLoc(MOD_ID, "ore_dict")
 
     init {
+        require(OreDictionary.doesOreNameExist(oreDict)) {"Ore Dictionary entry '$oreDict' does not exist."}
         TODO("Stub class (for now).")
     }
 }

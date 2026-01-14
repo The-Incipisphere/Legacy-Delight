@@ -21,4 +21,5 @@ interface IRecipe<C : Container> {
     val type: SaneResLoc
 
     fun matches(container: C, world: World): Boolean
+    fun validate(): Boolean
 }

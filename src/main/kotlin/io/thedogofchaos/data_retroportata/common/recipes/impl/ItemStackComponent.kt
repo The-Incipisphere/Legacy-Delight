@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack
 data class ItemStackComponent(val itemStack: ItemStack, val metaWildcard: Boolean) : IInputComponent, IOutputComponent {
     override val type: SaneResLoc = SaneResLoc(MOD_ID,"item_stack")
 
-    companion object Serializer: ISerializableComponent<ItemStackComponent> {
+    object Serializer: ISerializableComponent<ItemStackComponent> {
         override fun fromJson(jsonObject: JsonObject): ItemStackComponent {
             val item = run { // i put this in a run block for better clarity of what this shit does.
                 val itemElement: JsonElement = jsonObject.get("item") ?: throw JsonParseException(
@@ -44,6 +44,10 @@ data class ItemStackComponent(val itemStack: ItemStack, val metaWildcard: Boolea
                 ),
                 metaWildcard
             )
+        }
+
+        override fun toJson(): JsonObject {
+            TODO("Not yet implemented")
         }
     }
 }
