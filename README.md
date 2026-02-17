@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> # 308 Permanent Redirect
+> This repository has been moved to Codeberg, at https://codeberg.org/The-Incipisphere/Legacy-Delight
+> No further commits will be pushed here.
+
 # Legacy Delight
 A scuffed backport of Farmers Delight, from 1.20.1 down to 1.7.10.
 Requires GTNHLib & Forgelin.
