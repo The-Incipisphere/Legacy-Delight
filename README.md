@@ -1,6 +1,7 @@
 > [!IMPORTANT]
 > # 308 Permanent Redirect
 > This repository has been moved to Codeberg, at https://codeberg.org/The-Incipisphere/Legacy-Delight
+> 
 > No further commits will be pushed here.
 
 # Legacy Delight
